@@ -43,15 +43,39 @@ const emailButton = SectionEmailElement.querySelector("button");
 
 const gotEmail = ["pinco@gmail.com", "pallo@gmail.com", "caio@gmail.com", "sempio@gmail.com"];
 
+const newNewDiv = document.createElement("div");
+newNewDiv.classList.add("col-12");
+
 emailButton.addEventListener("click", function(){
+
+  let check = false;
+
+  let checkEmail;
 
   const emailValue = emailElement.value.toLowerCase();
   
- if (gotEmail.includes(emailValue)){
-  console.log("esisto già");
- }else{
-  console.log("non esisto già")
- }
+  for ( let i = 0; i < gotEmail.length; i++){
+    
+    if (gotEmail[i] == emailValue){
+      check= true;
+    } 
+  }
+  
+  if (check== true){
+    checkEmail = "esiste gia"
+  }else {
+    checkEmail = " non esiste gia"
+    gotEmail.push(`${emailValue}`)
+  }
+
+  newNewDiv.innerHTML=`<div class="row text-center">
+    <div class="col-6 p-3">
+      ${checkEmail}
+    </div>
+  </div>`;
+
+  SectionEmailElement.append(newNewDiv);  
+  console.log(gotEmail)
 })
 
 
